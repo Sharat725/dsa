@@ -1,117 +1,69 @@
 package singleDimentionArray;
 
-public class SDA {
-	int[] arr;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+
+class Employee1 {
+	private int id;
+	private String name;
+
 	
-	// Creation
-	public SDA(int size) {
-		arr=new int[size];
-		for(int i=0;i<arr.length;i++) {
-			arr[i]=Integer.MIN_VALUE;
-		}
+	public Employee1(int id, String name) {
+	
+		this.id = id;
+		this.name = name;
+	
+	}
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + "]";
 	}
 	
-	//Insertion
-	public void insert(int index,int value) {
-		try {
-			if(arr[index]==Integer.MIN_VALUE) {
-				arr[index]=value;
-				System.out.println("The value is inserted at index "+index+" value is"+value);
-			}
-			else {
-				System.out.println("Value not inserted at index"+index+" value is"+value);
-			}
-		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Invalid Index");
-		}
-	}
 	
-	// Traversal
-	public void traversal() {
-		for(int i=0;i<arr.length;i++) {
-			if(arr[i]!=Integer.MIN_VALUE) {
-			System.out.println(arr[i]);
-			}
-		}
-	}
-	
-	// SearchByVal
-	public void searchByVal(int v) {
-		for(int i=0;i<arr.length;i++) {
-			if(arr[i]==v) {
-				System.out.println("The value "+v+" found at index "+i);
-				return;
-			}
-			System.out.println("The value not found");
-		}
-	}
 	
 
-	//searchByIndex
-	public void searchByIndex(int i) {
-		try {
-			if(arr[i]!=Integer.MIN_VALUE) {
-				System.out.println("The value at index "+i+" is "+arr[i]);
-			}
-			else {
-				System.out.println("Element does not exist");
-			}
-		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Invalid index");
-		}
-	}
-	
-	//DeleteByVal
-	public void deleteByVal(int v) {
-		for(int i=0;i<arr.length;i++) {
-			if(arr[i]==v) {
-				arr[i]=Integer.MIN_VALUE;
-				System.out.println("The value "+v+" as been deleted");
-				return;
-			}
-			System.out.println("The value not found");
-		}
-	}
-	
-	//DeleteByIndex
-	public void deleteByIndex(int i) {
-		try {
-			if(arr[i]!=Integer.MIN_VALUE) {
-				arr[i]=Integer.MIN_VALUE;
-				System.out.println("The value at index "+i+" is deleted");
-			}
-			else {
-				System.out.println("Element does not exist");
-			}
-		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Invalid index");
-		}
-	}
-	
-	//Deletion of Array
-	public void delete() {
-		arr=null;
-		System.out.println("Array is deleted");
-	}
+}
+
+public class SDA {
 	
 	public static void main(String[] args) {
-		SDA s=new SDA(5);
-		s.insert(0, 10);
-		s.insert(1, 20);
-		s.insert(2, 30);
-		s.insert(3, 40);
-		s.insert(4, 50);
-		s.insert(5, 60);
-		s.traversal();
-		s.searchByVal(30);
-		s.searchByIndex(1);
-		s.deleteByIndex(0);
-		s.deleteByVal(20);
-		s.traversal();
-		s.delete();
-		s.traversal();
+		Employee1[] arr= {
+				new Employee1(101, "Sharat"),
+				new Employee1(103, "Sanat"),
+				new Employee1(105, "Sampat"),
+				new Employee1(102, "Shine"),
+				new Employee1(104, "Sham")
+		};
+		
+		//SortById
+		System.out.println("SortById");
+		Employee1[] soertedArr=Arrays.stream(arr)
+		.sorted(Comparator.comparingInt(e->e.getId()))
+		.toArray(Employee1[]::new);
+		
+		Arrays.stream(soertedArr).forEach(System.out::println);
+		
+		//SortByName
+		System.out.println("SortByName");
+		Arrays.stream(arr)
+		.sorted((e1,e2) -> e1.getName().compareTo(e2.getName()))
+		.forEach(System.out::println);
 	}
+
+	
 }

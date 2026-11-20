@@ -101,6 +101,8 @@ public class TDA {
 		a=null;
 		System.out.println("Array deleted");
 	}
+	
+	
 
 	public static void main(String[] args) {
 		TDA t=new TDA(2, 2);

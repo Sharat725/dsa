@@ -1,5 +1,7 @@
 package singleDimentionArray;
 
+import java.util.Arrays;
+
 public class StringArray {
 
 	String[] a;
@@ -102,12 +104,26 @@ public class StringArray {
 		s.insert(3, "are");
 		s.insert(4, "you");
 		s.traversal();
-		s.searchByVal("are");
-		s.searchByIndex(0);
-		s.deleteByIndex(1);
-		s.deleteByValue("How");
-		s.traversal();
-		s.delete();
+		System.out.println(Arrays.toString(s.a));
+//		s.searchByVal("are");
+//		s.searchByIndex(0);
+//		s.deleteByIndex(1);
+//		s.deleteByValue("How");
+//		s.traversal();
+//		s.delete();
+//		s.traversal();
+		
+		//Sort by Name by bubble sort
+		int size=s.a.length;
+		for(int i=0;i<size;i++) {
+			for(int j=0;j<size-1-i;j++) {
+				if(s.a[j].compareTo(s.a[j+1])>0) {
+					String temp=s.a[j];
+					s.a[j]=s.a[j+1];
+					s.a[j+1]=temp;
+				}
+			}
+		}
 		s.traversal();
 	}
 }
